@@ -39,7 +39,7 @@ import android.view.View;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
+import com.aim.freedomhub.preferences.CustomSeekBarPreference;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
@@ -49,10 +49,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     private static final String PREF_ROWS_PORTRAIT = "qs_rows_portrait";
     private static final String PREF_ROWS_LANDSCAPE = "qs_rows_landscape";
 
-    private SystemSettingSeekBarPreference mQsColumnsPortrait;
-    private SystemSettingSeekBarPreference mQsColumnsLandscape;
-    private SystemSettingSeekBarPreference mQsRowsPortrait;
-    private SystemSettingSeekBarPreference mQsRowsLandscape;
+    private CustomSeekBarPreference mQsColumnsPortrait;
+    private CustomSeekBarPreference mQsColumnsLandscape;
+    private CustomSeekBarPreference mQsRowsPortrait;
+    private CustomSeekBarPreference mQsRowsLandscape;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -61,25 +61,25 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefScreen = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mQsColumnsPortrait = (SystemSettingSeekBarPreference) findPreference(PREF_COLUMNS_PORTRAIT);
+        mQsColumnsPortrait = (CustomSeekBarPreference) findPreference(PREF_COLUMNS_PORTRAIT);
         int columnsPortrait = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_COLUMNS_PORTRAIT, 4, UserHandle.USER_CURRENT);
         mQsColumnsPortrait.setValue(columnsPortrait);
         mQsColumnsPortrait.setOnPreferenceChangeListener(this);
 
-        mQsColumnsLandscape = (SystemSettingSeekBarPreference) findPreference(PREF_COLUMNS_LANDSCAPE);
+        mQsColumnsLandscape = (CustomSeekBarPreference) findPreference(PREF_COLUMNS_LANDSCAPE);
         int columnsLandscape = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_COLUMNS_LANDSCAPE, 4, UserHandle.USER_CURRENT);
         mQsColumnsLandscape.setValue(columnsLandscape);
         mQsColumnsLandscape.setOnPreferenceChangeListener(this);
 
-        mQsRowsPortrait = (SystemSettingSeekBarPreference) findPreference(PREF_ROWS_PORTRAIT);
+        mQsRowsPortrait = (CustomSeekBarPreference) findPreference(PREF_ROWS_PORTRAIT);
         int rowsPortrait = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_ROWS_PORTRAIT, 2, UserHandle.USER_CURRENT);
         mQsRowsPortrait.setValue(rowsPortrait);
         mQsRowsPortrait.setOnPreferenceChangeListener(this);
 
-        mQsRowsLandscape = (SystemSettingSeekBarPreference) findPreference(PREF_ROWS_LANDSCAPE);
+        mQsRowsLandscape = (CustomSeekBarPreference) findPreference(PREF_ROWS_LANDSCAPE);
         int rowsLandscape = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_ROWS_LANDSCAPE, 2, UserHandle.USER_CURRENT);
         mQsRowsLandscape.setValue(rowsLandscape);
