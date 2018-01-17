@@ -285,4 +285,9 @@
     <string name="clock_date_right">Right of time</string>
     <string name="clock_date_left">Left of time</string>
     <string name="clock_date_position">Date position</string>
+
+    <!-- lock screen visualizer -->
+    <string name="lockscreen_visualizer_title">Lock screen visualizer</string>
+    <string name="lockscreen_visualizer_summary">Displays a live music visualizer on lock screen when music is playing</string>
+
 </resources>
