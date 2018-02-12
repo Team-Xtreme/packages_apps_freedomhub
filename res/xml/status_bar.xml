@@ -38,6 +38,12 @@
             android:fragment="com.aim.freedomhub.categories.ClockDateSettings" />
 
          <Preference
+            android:key="battery_style"
+            android:icon="@drawable/ic_battery_settings"
+            android:title="@string/battery_style_category_title"
+            android:fragment="com.aim.freedomhub.categories.BatteryStyle"
+
+         <Preference
             android:key="traffic"
             android:fragment="com.aim.freedomhub.Traffic"
             android:icon="@drawable/ic_traffic"
