@@ -306,4 +306,8 @@
     <string name="disable_fc_notifications_title">Diable FC Notifications</string>
     <string name="disable_fc_notifications_summary">This will hide all force close notificaitons</string>
 
+    <!-- Data Disable Icon -->
+    <string name="data_disabled_icon_title">Show data disabled icon</string>
+    <string name="data_disabled_icon_summary">Display the cross next to statusbar when data is disabled</string>
+
 </resources>
