@@ -31,6 +31,13 @@
     </Preference>
 
          <Preference
+            android:key="clock_settings"
+            android:icon="@drawable/ic_clock"
+            android:title="@string/status_bar_clock"
+            android:summary="@string/status_bar_clock_summary"
+            android:fragment="com.aim.freedomhub.categories.ClockDateSettings" />
+
+         <Preference
             android:key="traffic"
             android:fragment="com.aim.freedomhub.Traffic"
             android:icon="@drawable/ic_traffic"
