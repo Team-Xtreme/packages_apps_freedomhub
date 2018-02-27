@@ -33,8 +33,8 @@
          <Preference
             android:key="clock_settings"
             android:icon="@drawable/ic_clock"
-            android:title="@string/status_bar_clock"
-            android:summary="@string/status_bar_clock_summary"
+            android:title="@string/status_bar_show_clock"
+            android:summary="@string/status_bar_show_clock_summary"
             android:fragment="com.aim.freedomhub.categories.ClockDateSettings" />
 
          <Preference
