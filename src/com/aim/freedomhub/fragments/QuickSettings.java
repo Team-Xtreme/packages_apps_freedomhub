@@ -40,13 +40,16 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.aim.freedomhub.preferences.SystemSettingEditTextPreference;
+import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String FOOTER_TEXT_STRING = "footer_text_string";
+    private static final String QS_PANEL_ALPHA = "qs_panel_alpha";
 
     private SystemSettingEditTextPreference mFooterString;
+    private SystemSettingSeekBarPreference mQsPanelAlpha;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -66,6 +69,12 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         } else {
             mFooterString.setText(footerString);
         }
+
+        mQsPanelAlpha = (SystemSettingSeekBarPreference) findPreference(QS_PANEL_ALPHA);
+        int qsPanelAlpha = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QS_PANEL_BG_ALPHA, 255, UserHandle.USER_CURRENT);
+        mQsPanelAlpha.setValue(qsPanelAlpha);
+        mQsPanelAlpha.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -80,6 +89,12 @@ public class QuickSettings extends SettingsPreferenceFragment implements
             } else {
                 Settings.System.putString(getActivity().getContentResolver(),
                         Settings.System.FOOTER_TEXT_STRING, value);
+            }
+            return true;
+        } else if (preference == mQsPanelAlpha) {
+            int bgAlpha = (Integer) newValue;
+            Settings.System.putIntForUser(mContext.getContentResolver(),
+                    Settings.System.QS_PANEL_BG_ALPHA, bgAlpha, UserHandle.USER_CURRENT);
             }
             return true;
         }
