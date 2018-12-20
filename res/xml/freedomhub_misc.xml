@@ -95,4 +95,21 @@
         android:summary="@string/allow_signature_fake_summary"
         android:defaultValue="false" />
 
+    <PreferenceCategory
+        android:key="alternative_recents_category"
+        android:title="@string/alternative_recents_category">
+
+    <Preference
+        android:key="swipe_up_enabled_warning"
+        android:selectable="false"
+        android:summary="@string/alternative_recents_swipe_up_enabled_warning_summary" />
+
+    <com.aim.freedomhub.preferences.SystemSettingMasterSwitchPreference
+        android:key="use_slim_recents"
+        android:fragment="com.aim.freedomhub.fragments.SlimRecents"
+        android:title="@string/slim_recents_fragment_title"
+        android:summary="@string/slim_recents_fragment_summary"/>
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
