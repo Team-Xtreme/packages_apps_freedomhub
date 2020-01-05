@@ -990,4 +990,8 @@
     <string name="lockscreen_clock_sammy_accent">Sammy accent</string>
     <string name="lockscreen_clock_sammy_accent_alt">Sammy accent (dark hour)</string>
 
+    <!-- Lock icon -->
+    <string name="hide_lockicon_title">Hide lock icon</string>
+    <string name="hide_lockicon_summary">Hide the lock icon on lockscreen</string>
+
 </resources>
