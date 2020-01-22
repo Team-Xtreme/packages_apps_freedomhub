@@ -57,6 +57,12 @@
             android:defaultValue="true"
             android:disableDependentsState="true" />
 
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="qs_bg_color"
+            android:title="@string/qs_bg_color_title"
+            settings:defaultColorValue="0xff000000"
+            android:persistent="false" />
+
         <com.aim.freedomhub.preferences.SystemSettingSwitchPreference
             android:key="qs_panel_bg_use_wall"
             android:title="@string/qs_bg_wall_title"
