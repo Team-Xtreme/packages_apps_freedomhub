@@ -32,7 +32,7 @@
             android:dependency="notification_light_pulse"
             android:defaultValue="true" />
 
-        <com.aim.freedomhub.fragments.notificationlights.ApplicationLightPreference
+        <com.aim.freedomhub.fragments.lights.ApplicationLightPreference
             android:key="default"
             android:title="@string/notification_light_default_value"
             android:persistent="false"
