@@ -31,6 +31,7 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
 
 import org.lineageos.internal.notification.LightsCapabilities;
+import com.aim.freedomhub.fragments.lights.ApplicationLightPreference;
 import com.aim.freedomhub.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto;

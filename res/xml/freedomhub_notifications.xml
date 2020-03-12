@@ -19,14 +19,12 @@
         <!-- Battery light -->
         <PreferenceScreen
             android:key="battery_lights"
-            android:icon="@drawable/ic_led_on"
             android:title="@string/battery_light_title"
             android:summary="@string/battery_light_summary"
             android:fragment="com.aim.freedomhub.fragments.lights.BatteryLightSettings" />
 
         <PreferenceScreen
             android:key="notification_lights"
-            android:icon="@drawable/ic_led_on"
             android:title="@string/notification_light_title"
             android:summary="@string/notification_light_summary"
             android:fragment="com.aim.freedomhub.fragments.lights.NotificationLightSettings" />
