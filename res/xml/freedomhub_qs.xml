@@ -21,26 +21,26 @@
         android:key="qs_columns_rows_category"
         android:title="@string/qs_layout_category">
 
-        <com.aim.freedomhub.preferences.CustomSeekBarPreference
+        <com.aim.freedomhub.preferences.SystemSettingSeekBarPreference
             android:key="qs_rows_portrait"
             android:title="@string/qs_rows_portrait_title"
-            android:max="5"
+            android:max="7"
             android:min="1"
-            android:defaultValue="3"
+            android:defaultValue="2"
             settings:units="" />
 
-        <com.aim.freedomhub.preferences.CustomSeekBarPreference
+        <com.aim.freedomhub.preferences.SystemSettingSeekBarPreference
             android:key="qs_rows_landscape"
             android:title="@string/qs_rows_landscape_title"
             android:max="5"
             android:min="1"
-            android:defaultValue="1"
+            android:defaultValue="2"
             settings:units="" />
 
         <com.aim.freedomhub.preferences.CustomSeekBarPreference
             android:key="qs_columns_portrait"
             android:title="@string/qs_columns_portrait_title"
-            android:max="7"
+            android:max="10"
             android:min="1"
             android:defaultValue="4"
             settings:units="" />
@@ -48,7 +48,7 @@
         <com.aim.freedomhub.preferences.CustomSeekBarPreference
             android:key="qs_columns_landscape"
             android:title="@string/qs_columns_landscape_title"
-            android:max="9"
+            android:max="10"
             android:min="1"
             android:defaultValue="4"
             settings:units="" />
@@ -95,7 +95,6 @@
         <!-- Battery location -->
         <com.aim.freedomhub.preferences.SystemSettingListPreference
             android:key="qs_battery_location"
-            android:icon="@drawable/ic_battery"
             android:title="@string/qs_battery_location_title"
             android:dialogTitle="@string/qs_battery_location_title"
             android:entries="@array/qs_battery_location_entries"
