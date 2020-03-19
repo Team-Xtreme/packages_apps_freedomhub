@@ -109,30 +109,6 @@
         android:entryValues="@array/toast_animation_values"
         android:defaultValue="1" />
 
-    <com.aim.freedomhub.preferences.SystemSettingListPreference
-        android:key="anim_tile_style"
-        android:dialogTitle="@string/qs_tile_animation_style_title"
-        android:title="@string/qs_tile_animation_style_title"
-        android:entries="@array/qs_tile_animation_style_entries"
-        android:entryValues="@array/qs_tile_animation_style_values"
-        android:defaultValue="0" />
-
-    <com.aim.freedomhub.preferences.SystemSettingListPreference
-        android:key="anim_tile_duration"
-        android:dialogTitle="@string/qs_tile_animation_duration_title"
-        android:title="@string/qs_tile_animation_duration_title"
-        android:entries="@array/qs_tile_animation_duration_entries"
-        android:entryValues="@array/qs_tile_animation_duration_values"
-        android:defaultValue="2000" />
-
-    <com.aim.freedomhub.preferences.SystemSettingListPreference
-        android:key="anim_tile_interpolator"
-        android:dialogTitle="@string/qs_tile_animation_interpolator_title"
-        android:title="@string/qs_tile_animation_interpolator_title"
-        android:entries="@array/qs_tile_animation_interpolator_entries"
-        android:entryValues="@array/qs_tile_animation_interpolator_values"
-        android:defaultValue="0" />
-
     <ListPreference
         android:key="pref_scrollingcache"
         android:dialogTitle="@string/pref_scrollingcache_title"
@@ -148,5 +124,29 @@
         android:entryValues="@array/screen_off_animation_values"
         android:persistent="false"
         android:defaultValue="0" />
+
+        <ListPreference
+            android:key="qs_tile_animation_style"
+            android:title="@string/qs_tile_animation_style_title"
+            android:entries="@array/qs_tile_animation_style_entries"
+            android:entryValues="@array/qs_tile_animation_style_values"
+            android:defaultValue="0"
+            android:persistent="false" />
+
+        <ListPreference
+            android:key="qs_tile_animation_duration"
+            android:title="@string/qs_tile_animation_duration_title"
+            android:entries="@array/qs_tile_animation_duration_entries"
+            android:entryValues="@array/qs_tile_animation_duration_values"
+            android:defaultValue="2000"
+            android:persistent="false" />
+
+        <ListPreference
+            android:key="qs_tile_animation_interpolator"
+            android:title="@string/qs_tile_animation_interpolator_title"
+            android:entries="@array/qs_tile_animation_interpolator_entries"
+            android:entryValues="@array/qs_tile_animation_interpolator_values"
+            android:defaultValue="0"
+            android:persistent="false" />
 
 </PreferenceScreen>

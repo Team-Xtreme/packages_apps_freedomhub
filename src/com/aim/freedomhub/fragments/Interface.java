@@ -17,9 +17,12 @@
 package com.aim.freedomhub.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.ContentResolver;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.UserHandle;
 import android.os.SystemProperties;
 import androidx.preference.ListPreference;
@@ -30,6 +33,7 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 import android.widget.Toast;
+import android.view.View;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -43,8 +47,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-public class Interface extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener {
+public class Interface extends SettingsPreferenceFragment
+        implements OnPreferenceChangeListener {
 
     private static final String ANIMATION_DURATION = "animation_controls_duration";
     private static final String ACTIVITY_OPEN = "activity_open";
@@ -61,13 +65,13 @@ public class Interface extends SettingsPreferenceFragment implements
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
     private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
-    private static final String PREF_TILE_ANIM_STYLE = "qs_tile_animation_style";
-    private static final String PREF_TILE_ANIM_DURATION = "qs_tile_animation_duration";
-    private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_interpolator";
     private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
     private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
     private static final String SCROLLINGCACHE_DEFAULT = "1";
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
+    private static final String PREF_TILE_ANIM_STYLE = "qs_tile_animation_style";
+    private static final String PREF_TILE_ANIM_DURATION = "qs_tile_animation_duration";
+    private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_interpolator";
 
     private CustomSeekBarPreference mAnimDuration;
     ListPreference mActivityOpenPref;
@@ -84,11 +88,11 @@ public class Interface extends SettingsPreferenceFragment implements
     private ListPreference mToastAnimation;
     private ListPreference mListViewAnimation;
     private ListPreference mListViewInterpolator;
+    private ListPreference mScrollingCachePref;
+    private ListPreference mScreenOffAnimation;
     private ListPreference mTileAnimationStyle;
     private ListPreference mTileAnimationDuration;
     private ListPreference mTileAnimationInterpolator;
-    private ListPreference mScrollingCachePref;
-    private ListPreference mScreenOffAnimation;
 
     private int[] mAnimations;
     private String[] mAnimationsStrings;
@@ -101,8 +105,8 @@ public class Interface extends SettingsPreferenceFragment implements
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.freedomhub_interface);
-        PreferenceScreen prefSet = getPreferenceScreen();
-        ContentResolver resolver = getActivity().getContentResolver();
+        final PreferenceScreen prefs = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
 
         mAnimDuration = (CustomSeekBarPreference) findPreference(ANIMATION_DURATION);
         int animdef = Settings.Global.getInt(resolver,
@@ -207,17 +211,6 @@ public class Interface extends SettingsPreferenceFragment implements
         mListViewInterpolator.setEnabled(listviewanimation > 0);
         mListViewInterpolator.setOnPreferenceChangeListener(this);
 
-        mTileAnimationStyle = (ListPreference) findPreference(PREF_TILE_ANIM_STYLE);
-        mTileAnimationStyle.setOnPreferenceChangeListener(this);
-
-        int tileAnimationStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.ANIM_TILE_STYLE, 0,
-                UserHandle.USER_CURRENT);
-        mTileAnimationDuration = (ListPreference) findPreference(PREF_TILE_ANIM_DURATION);
-        mTileAnimationDuration.setEnabled(tileAnimationStyle > 0);
-        mTileAnimationInterpolator = (ListPreference) findPreference(PREF_TILE_ANIM_INTERPOLATOR);
-        mTileAnimationInterpolator.setEnabled(tileAnimationStyle > 0);
-
         mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
         mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
                 SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
@@ -230,6 +223,29 @@ public class Interface extends SettingsPreferenceFragment implements
         mScreenOffAnimation.setValue(Integer.toString(screenOffAnimation));
         mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntry());
         mScreenOffAnimation.setOnPreferenceChangeListener(this);
+
+        mTileAnimationInterpolator = (ListPreference) findPreference(PREF_TILE_ANIM_INTERPOLATOR);
+        int tileAnimationInterpolator = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.ANIM_TILE_INTERPOLATOR, 0, UserHandle.USER_CURRENT);
+        mTileAnimationInterpolator.setValue(String.valueOf(tileAnimationInterpolator));
+        updateTileAnimationInterpolatorSummary(tileAnimationInterpolator);
+        mTileAnimationInterpolator.setOnPreferenceChangeListener(this);
+        updateAnimTileStyle(tileAnimationStyle);
+
+        mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
+        int listviewanimation = Settings.Global.getInt(resolver,
+                Settings.Global.LISTVIEW_ANIMATION, 0);
+        mListViewAnimation.setValue(String.valueOf(listviewanimation));
+        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
+        mListViewAnimation.setOnPreferenceChangeListener(this);
+
+        mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
+        int listviewinterpolator = Settings.Global.getInt(resolver,
+                Settings.Global.LISTVIEW_INTERPOLATOR, 0);
+        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
+        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
+        mListViewInterpolator.setEnabled(listviewanimation > 0);
+        mListViewInterpolator.setOnPreferenceChangeListener(this);
 
         if (mToast != null) {
             mToast.cancel();
@@ -354,11 +370,6 @@ public class Interface extends SettingsPreferenceFragment implements
                     Settings.Global.LISTVIEW_INTERPOLATOR, value);
             mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
             return true;
-        } else if (preference == mTileAnimationStyle) {
-            int value = Integer.valueOf((String) newValue);
-            mTileAnimationDuration.setEnabled(value > 0);
-            mTileAnimationInterpolator.setEnabled(value > 0);
-            return true;
         } else if (preference == mScrollingCachePref) {
             String value = (String) newValue;
             int index = mScrollingCachePref.findIndexOfValue(value);
@@ -370,6 +381,25 @@ public class Interface extends SettingsPreferenceFragment implements
             int index = mScreenOffAnimation.findIndexOfValue((String) newValue);
             mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntries()[index]);
             Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_ANIMATION, value);
+            return true;
+        } else if (preference == mTileAnimationStyle) {
+            int tileAnimationStyle = Integer.valueOf((String) newValue);
+            Settings.System.putIntForUser(getContentResolver(), Settings.System.ANIM_TILE_STYLE,
+                    tileAnimationStyle, UserHandle.USER_CURRENT);
+            updateTileAnimationStyleSummary(tileAnimationStyle);
+            updateAnimTileStyle(tileAnimationStyle);
+            return true;
+        } else if (preference == mTileAnimationDuration) {
+            int tileAnimationDuration = Integer.valueOf((String) newValue);
+            Settings.System.putIntForUser(getContentResolver(), Settings.System.ANIM_TILE_DURATION,
+                    tileAnimationDuration, UserHandle.USER_CURRENT);
+            updateTileAnimationDurationSummary(tileAnimationDuration);
+            return true;
+        } else if (preference == mTileAnimationInterpolator) {
+            int tileAnimationInterpolator = Integer.valueOf((String) newValue);
+            Settings.System.putIntForUser(getContentResolver(), Settings.System.ANIM_TILE_INTERPOLATOR,
+                    tileAnimationInterpolator, UserHandle.USER_CURRENT);
+            updateTileAnimationInterpolatorSummary(tileAnimationInterpolator);
             return true;
         }
         return false;
@@ -404,5 +434,35 @@ public class Interface extends SettingsPreferenceFragment implements
         int mNum = Settings.Global.getInt(getActivity().getContentResolver(),
                     mString, 0);
         return mAnimationsStrings[mNum];
+    }
+
+    private void updateTileAnimationStyleSummary(int tileAnimationStyle) {
+        String prefix = (String) mTileAnimationStyle.getEntries()[mTileAnimationStyle.findIndexOfValue(String
+                .valueOf(tileAnimationStyle))];
+        mTileAnimationStyle.setSummary(getResources().getString(R.string.qs_set_animation_style, prefix));
+    }
+
+    private void updateTileAnimationDurationSummary(int tileAnimationDuration) {
+        String prefix = (String) mTileAnimationDuration.getEntries()[mTileAnimationDuration.findIndexOfValue(String
+                .valueOf(tileAnimationDuration))];
+        mTileAnimationDuration.setSummary(getResources().getString(R.string.qs_set_animation_duration, prefix));
+    }
+
+    private void updateTileAnimationInterpolatorSummary(int tileAnimationInterpolator) {
+        String prefix = (String) mTileAnimationInterpolator.getEntries()[mTileAnimationInterpolator.findIndexOfValue(String
+                .valueOf(tileAnimationInterpolator))];
+        mTileAnimationInterpolator.setSummary(getResources().getString(R.string.qs_set_animation_interpolator, prefix));
+    }
+
+    private void updateAnimTileStyle(int tileAnimationStyle) {
+        if (mTileAnimationDuration != null) {
+            if (tileAnimationStyle == 0) {
+                mTileAnimationDuration.setEnabled(false);
+                mTileAnimationInterpolator.setEnabled(false);
+            } else {
+                mTileAnimationDuration.setEnabled(true);
+                mTileAnimationInterpolator.setEnabled(true);
+            }
+        }
     }
 }
