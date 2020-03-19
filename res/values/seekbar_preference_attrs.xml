@@ -23,6 +23,10 @@
         <attr name="showSign" format="boolean" />
         <attr name="units" format="string|reference" />
         <attr name="continuousUpdates" format="boolean" />
+        <!-- style -->
+        <attr name="thumb_default_value_color" format="color" />
+        <attr name="value_popup_view_fg" format="color" />
+        <attr name="value_popup_view_bg" format="color" />
     </declare-styleable>
 
 </resources>

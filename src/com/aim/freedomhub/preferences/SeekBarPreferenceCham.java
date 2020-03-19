@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.crdroid.settings.preferences;
+package com.aim.freedomhub.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,9 +30,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crdroid.settings.R;
+import com.aim.freedomhub.R;
 
-public class CustomSeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener,
+public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekBarChangeListener,
         View.OnClickListener, View.OnLongClickListener {
     protected final String TAG = getClass().getName();
     private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
@@ -61,17 +61,17 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     protected boolean mTrackingTouch = false;
     protected int mTrackingValue;
 
-    public CustomSeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SeekBarPreferenceCham(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSeekBarPreference);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SeekBarPreference);
         try {
-            mShowSign = a.getBoolean(R.styleable.CustomSeekBarPreference_showSign, mShowSign);
-            String units = a.getString(R.styleable.CustomSeekBarPreference_units);
+            mShowSign = a.getBoolean(R.styleable.SeekBarPreference_showSign, mShowSign);
+            String units = a.getString(R.styleable.SeekBarPreference_units);
             if (units != null)
                 mUnits = " " + units;
-            mContinuousUpdates = a.getBoolean(R.styleable.CustomSeekBarPreference_continuousUpdates, mContinuousUpdates);
-            String defaultValueText = a.getString(R.styleable.CustomSeekBarPreference_defaultValueText);
+            mContinuousUpdates = a.getBoolean(R.styleable.SeekBarPreference_continuousUpdates, mContinuousUpdates);
+            String defaultValueText = a.getString(R.styleable.SeekBarPreference_defaultValueText);
             mDefaultValueTextExists = defaultValueText != null && !defaultValueText.isEmpty();
             if (mDefaultValueTextExists) {
                 mDefaultValueText = defaultValueText;
@@ -101,20 +101,20 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         }
 
         mSeekBar = new SeekBar(context, attrs);
-        setLayoutResource(R.layout.preference_custom_seekbar);
+        setLayoutResource(R.layout.preference_seekbar);
     }
 
-    public CustomSeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SeekBarPreferenceCham(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public CustomSeekBarPreference(Context context, AttributeSet attrs) {
+    public SeekBarPreferenceCham(Context context, AttributeSet attrs) {
         this(context, attrs, TypedArrayUtils.getAttr(context,
                 androidx.preference.R.attr.preferenceStyle,
                 android.R.attr.preferenceStyle));
     }
 
-    public CustomSeekBarPreference(Context context) {
+    public SeekBarPreferenceCham(Context context) {
         this(context, null);
     }
 

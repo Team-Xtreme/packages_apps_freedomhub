@@ -89,7 +89,7 @@
 
             <ImageView
                 android:id="@+id/reset"
-                android:src="@drawable/ic_custom_seekbar_reset"
+                android:src="@drawable/ic_reset_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -107,7 +107,7 @@
 
             <ImageView
                 android:id="@+id/minus"
-                android:src="@drawable/ic_custom_seekbar_minus"
+                android:src="@drawable/ic_seekbar_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -115,7 +115,7 @@
 
             <ImageView
                 android:id="@+id/plus"
-                android:src="@drawable/ic_custom_seekbar_plus"
+                android:src="@drawable/ic_seekbar_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
