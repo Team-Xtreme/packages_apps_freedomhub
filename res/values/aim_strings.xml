@@ -441,6 +441,8 @@
     <string name="fod_wallpaper_color">Use wallpaper color for FOD icon</string>
     <string name="fod_wallpaper_color_summary">Uses adjusted primary wallpaper color for FOD icon\nNOTE: might look good only with some wallpapers</string>
 
+    <string name="status_bar_icons_title">Statusbar Icons</string>
+
     <!-- 4G icon -->
     <string name="show_fourg_icon_title">4G icon</string>
     <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
@@ -456,5 +458,9 @@
     <!-- Roaming indicator icon -->
     <string name="roaming_indicator_icon_title">Roaming indicator</string>
     <string name="roaming_indicator_icon_summary">Display roaming indicator in signal icon when in roaming mode</string>
+
+    <!-- Lockscreen battery info indicator -->
+    <string name="lockscreen_battery_info_title">Charging info</string>
+    <string name="lockscreen_battery_info_summary">Display charger max current, voltage and battery temperature while charging</string>
 
 </resources>
