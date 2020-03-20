@@ -124,7 +124,7 @@ public class DozeSettings extends SettingsPreferenceFragment implements Indexabl
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Context context = getContext();
         ContentResolver resolver = context.getContentResolver();
-        if preference == mTiltPreference) {
+        if (preference == mTiltPreference) {
             boolean value = (Boolean) newValue;
             Settings.Secure.putIntForUser(resolver, Settings.Secure.DOZE_TILT_GESTURE,
                  value ? 1 : 0, UserHandle.USER_CURRENT);

@@ -37,10 +37,12 @@
     <string name="choose_app">Choose app</string>
     <string name="reset">Reset</string>
 
+    <string name="default_string">Default</string>
+
     <!-- Custom seekbar -->
     <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
-    <string name="custom_seekbar_default_value">Default</string>
-    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong press to set</string>
+    <string name="custom_seekbar_default_value">by default</string>
+    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong tap to set</string>
     <string name="custom_seekbar_default_value_is_set">Default value is set</string>
 
     <!-- Network traffic -->
@@ -679,6 +681,8 @@
     <string name="handwave_summary">Pulse notifications on hand wave</string>
     <string name="pocket_title">Pocket</string>
     <string name="pocket_summary">Pulse notifications on removal from pocket</string>
+    <string name="sensor_warning_title">Caution</string>
+    <string name="sensor_warning_message">Settings based on sensors are subject to hardware compatibility. Enabling sensors for ambient display may increase power drain.</string>
 
     <!-- CPU Info -->
     <string name="show_cpu_info">Show CPU info</string>

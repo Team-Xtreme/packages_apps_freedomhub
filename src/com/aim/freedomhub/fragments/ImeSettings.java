@@ -23,7 +23,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.v14.preference.SwitchPreference;
+import androidx.preference.SwitchPreference;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.UserManager;
