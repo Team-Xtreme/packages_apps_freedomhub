@@ -14,6 +14,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    xmlns:freedomhub="http://schemas.android.com/apk/res-auto"
     xmlns:lineage="http://schemas.android.com/apk/res/lineageos.platform"
     android:title="@string/misc_cat_title" >
 
@@ -73,5 +74,17 @@
         android:title="@string/three_finger_gesture"
         android:summary="@string/three_finger_gesture_summary"
         android:defaultValue="false" />
+
+        <Preference
+            android:key="swipe_up_enabled_warning"
+            android:selectable="false"
+            android:summary="@string/alternative_recents_swipe_up_enabled_warning_summary" />
+
+        <com.aim.freedomhub.preferences.SystemSettingMasterSwitchPreference
+            android:key="use_slim_recents"
+            android:title="@string/slim_recents_title"
+            freedomhub:thereCanBeOnlyOneGroupId="1"
+            android:defaultValue="false"
+            android:fragment="com.aim.freedomhub.fragments.SlimRecents" />
 
 </PreferenceScreen>
