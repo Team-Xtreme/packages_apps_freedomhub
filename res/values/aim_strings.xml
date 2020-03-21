@@ -669,6 +669,7 @@
 
     <!-- Doze: switches -->
     <string name="doze_display_title">Ambient display</string>
+    <string name="doze_display_summary">Configure settings for ambient display</string>
     <string name="doze_sensor_title">Sensor based</string>
     <string name="doze_vibrate_summary">Duration to vibrate when pulsing notifications</string>
     <string name="tilt_sensor_title">Tilt sensor</string>
