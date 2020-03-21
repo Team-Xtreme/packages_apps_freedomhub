@@ -18,7 +18,7 @@
 
      <string name="about_aim">About</string>
      <string name="about_info">About Us</string>
-     <string name="about_info_summary">AIMROM is an aftermarket firmware based on LineageOS, with some added extras along the way.We are targeting a ROM that delivers exceptional performance, a balance of features,and a remarkable battery life.</string>
+     <string name="about_info_summary">AIMROM is an aftermarket firmware based on LineageOS, with some added extras along the way. We are targeting a ROM that delivers exceptional performance, a balance of features, and remarkable battery life.</string>
      <string name="dev_info">About AIMROM</string>
      <string name="devs_header">Meet Our Team</string>
      <string name="founder"> Emmanuel N. D. DENLINGER</string>
