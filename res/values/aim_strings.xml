@@ -703,10 +703,6 @@
     <string name="sensor_warning_title">Caution</string>
     <string name="sensor_warning_message">Settings based on sensors are subject to hardware compatibility. Enabling sensors for ambient display may increase power drain.</string>
 
-    <!-- CPU Info -->
-    <string name="show_cpu_info">Show CPU info</string>
-    <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string>
-
     <!-- Blink flashlight for incoming calls -->
     <string name="flashlight_on_call_title">Blink Flashlight on call</string>
     <string name="flashlight_on_call_disabled">Disabled</string>
