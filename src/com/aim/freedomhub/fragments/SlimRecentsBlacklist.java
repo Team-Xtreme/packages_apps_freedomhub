@@ -84,7 +84,7 @@ public class SlimRecentsBlacklist extends SettingsPreferenceFragment implements
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
                 final ListView list = new ListView(getActivity());
                 list.setAdapter(mPackageAdapter);
-                alertDialog.setTitle(R.string.profile_choose_app);
+                alertDialog.setTitle(R.string.choose_app);
                 alertDialog.setView(list);
                 dialog = alertDialog.create();
                 list.setOnItemClickListener(new OnItemClickListener() {

@@ -35,6 +35,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.aim.Utils;
+import com.aim.freedomhub.preferences.SystemSettingMasterSwitchPreference;
 
 import com.aim.freedomhub.fragments.ImeSettings;
 import com.aim.freedomhub.fragments.GamingMode;
