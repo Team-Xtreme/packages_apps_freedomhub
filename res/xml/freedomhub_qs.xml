@@ -17,6 +17,11 @@
     xmlns:lineage="http://schemas.android.com/apk/res/lineageos.platform"
     android:title="@string/qs_cat_title" >
 
+    <Preference
+        android:key="qs_panel"
+        android:title="@string/qs_panel_title"
+        android:fragment="com.aim.freedomhub.fragments.QSPanel" />
+
     <PreferenceCategory
         android:key="qs_columns_rows_category"
         android:title="@string/qs_layout_category">
@@ -155,17 +160,5 @@
             android:title="@string/qs_footer_settings_title"
             android:summary="@string/qs_footer_settings_summary"
             android:defaultValue="true"/>
-
-    <PreferenceCategory
-        android:title="@string/qs_panel_alpha_title">
-
-        <com.aim.freedomhub.preferences.CustomSeekBarPreference
-            android:key="qs_panel_alpha"
-            android:title="@string/qs_panel_alpha_title"
-            android:summary="@string/qs_panel_alpha_summary"
-            android:max="255"
-            settings:min="0"
-            android:defaultValue="255" />
-    </PreferenceCategory>
 
 </PreferenceScreen>

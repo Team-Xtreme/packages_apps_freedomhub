@@ -36,52 +36,40 @@ import java.util.Locale;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
+
 import java.util.List;
 import java.util.ArrayList;
 
-import com.aim.freedomhub.preferences.SystemSettingEditTextPreference;
-import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
-
-public class QuickSettings extends SettingsPreferenceFragment implements
+public class QSPanel extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
-    private static final String FOOTER_TEXT_STRING = "footer_text_string";
+    private static final String QS_PANEL_ALPHA = "qs_panel_alpha";
 
-    private SystemSettingEditTextPreference mFooterString;
+    private SystemSettingSeekBarPreference mQsPanelAlpha;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.freedomhub_qs);
+        addPreferencesFromResource(R.xml.qs_panel);
         PreferenceScreen prefScreen = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mFooterString = (SystemSettingEditTextPreference) findPreference(FOOTER_TEXT_STRING);
-        mFooterString.setOnPreferenceChangeListener(this);
-        String footerString = Settings.System.getString(getContentResolver(),
-                FOOTER_TEXT_STRING);
-        if (TextUtils.isEmpty(footerString) || footerString == null) {
-            mFooterString.setText("#LetsAIMify");
-            Settings.System.putString(getActivity().getContentResolver(),
-                    Settings.System.FOOTER_TEXT_STRING, "#LetsAIMify");
-        } else {
-            mFooterString.setText(footerString);
-        }
+        mQsPanelAlpha = (SystemSettingSeekBarPreference) findPreference(QS_PANEL_ALPHA);
+        int qsPanelAlpha = Settings.System.getInt(resolver,
+                Settings.System.QS_PANEL_BG_ALPHA, 255);
+        mQsPanelAlpha.setValue((int)(((double) qsPanelAlpha / 255) * 100));
+        mQsPanelAlpha.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mFooterString) {
-            String value = (String) newValue;
-            if (TextUtils.isEmpty(value) || value == null) {
-                mFooterString.setText("#LetsAIMify");
-                Settings.System.putString(getActivity().getContentResolver(),
-                        Settings.System.FOOTER_TEXT_STRING, "#LetsAIMify");
-            } else {
-                Settings.System.putString(getActivity().getContentResolver(),
-                        Settings.System.FOOTER_TEXT_STRING, value);
-            }
+        final ContentResolver resolver = getContentResolver();
+        if (preference == mQsPanelAlpha) {
+            int bgAlpha = (Integer) newValue;
+            int trueValue = (int) (((double) bgAlpha / 100) * 255);
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_PANEL_BG_ALPHA, trueValue);
             return true;
         }
         return false;
