@@ -41,7 +41,7 @@ import java.util.ArrayList;
 
 import com.aim.freedomhub.preferences.SystemSettingEditTextPreference;
 import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
-import com.ion.ionizer.preferences.SystemSettingMasterSwitchPreference;
+import com.aim.freedomhub.preferences.SystemSettingMasterSwitchPreference;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
