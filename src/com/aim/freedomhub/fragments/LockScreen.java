@@ -35,7 +35,6 @@ import android.provider.Settings;
 import com.aim.freedomhub.preferences.CustomSeekBarPreference;
 import com.aim.freedomhub.fragments.Visualizer;
 import com.aim.freedomhub.preferences.SystemSettingListPreference;
-import com.aim.freedomhub.preferences.SystemSettingSwitchPreference;
 import com.aim.freedomhub.preferences.SystemSettingSeekBarPreference;
 import com.aim.freedomhub.R;
 import lineageos.providers.LineageSettings;
@@ -49,12 +48,10 @@ public class LockScreen extends SettingsPreferenceFragment implements
 
     private static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
     private static final String LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
-    private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker";
 
     private SystemSettingListPreference mArtFilter;
     private SystemSettingSeekBarPreference mBlurSeekbar;
-    private SystemSettingSwitchPreference mFpKeystore;
     private PreferenceCategory mFODIconPickerCategory;
 
     @Override
@@ -73,11 +70,6 @@ public class LockScreen extends SettingsPreferenceFragment implements
 
         mBlurSeekbar = (SystemSettingSeekBarPreference) findPreference(LOCKSCREEN_MEDIA_BLUR);
         mBlurSeekbar.setEnabled(artFilter > 2);
-
-        mFpKeystore = (SystemSettingSwitchPreference) findPreference(FP_UNLOCK_KEYSTORE);
-        mFpKeystore.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.FP_UNLOCK_KEYSTORE, 0) == 1));
-        mFpKeystore.setOnPreferenceChangeListener(this);
 
         PackageManager packageManager = mContext.getPackageManager();
         boolean hasFod = packageManager.hasSystemFeature(LineageContextConstants.Features.FOD);
@@ -111,11 +103,6 @@ public class LockScreen extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_ALBUM_ART_FILTER, value);
             mBlurSeekbar.setEnabled(value > 2);
-            return true;
-        } else if (preference == mFpKeystore) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.FP_UNLOCK_KEYSTORE, value ? 1 : 0);
             return true;
         }
         return false;
